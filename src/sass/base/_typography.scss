@@ -1,0 +1,16 @@
+body {
+  font-size: getBaseFont("default-font-size");
+  font-family: getBaseFont("default-font-family");
+  font-weight: getBaseFont("default-font-weight");
+  line-height: getBaseFont("default-line-height");
+  color: getBaseFont("default-color");
+  background-color: getBaseFont("default-background");
+  min-height: 100vh;
+}
+
+@include dark-mode {
+  body {
+    background-color: getColor("dark-blue-200");
+    color: getColor("light");
+  }
+}

@@ -1,0 +1,64 @@
+.search {
+  &__group {
+    position: relative;
+    width: 390px;
+    height: 50px;
+
+    @include respond(tab-port) {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    @include absCenter();
+    left: 2.7rem;
+  }
+
+  &__icon {
+    color: rgba(getColor("dark"), 0.4);
+    vertical-align: middle;
+  }
+
+  &__control {
+    display: block;
+    font-family: inherit;
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-weight: inherit;
+    font-size: 1.7rem;
+    padding: 0.8rem 0 0.8rem 5rem;
+    border-radius: 4px;
+    color: getColor("dark-blue-300");
+    box-shadow: 2px 0px 4px 1px getColor("shadow-light");
+    background: getColor("light");
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: rgba(getColor("dark"), 0.4);
+    }
+  }
+}
+
+@include dark-mode {
+  .search {
+    &__icon {
+      color: getColor("light");
+    }
+
+    &__control {
+      box-shadow: 2px 0px 4px 1px getColor("shadow-dark");
+      background: getColor("dark-blue-100");
+      color: getColor("light");
+
+      &::placeholder {
+        color: getColor("light");
+      }
+    }
+  }
+}

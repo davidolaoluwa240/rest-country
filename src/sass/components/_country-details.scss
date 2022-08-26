@@ -1,0 +1,88 @@
+.country-details {
+  @include flex-box($align-items: flex-start);
+
+  @include respond(tab-land) {
+    display: block;
+  }
+
+  &__left {
+    width: 540px;
+    height: 350px;
+    margin-right: 12rem;
+
+    @include respond(tab-land) {
+      width: 590px;
+    }
+
+    @include respond(phone) {
+      width: 100%;
+    }
+  }
+
+  &__right {
+    flex-grow: 1;
+    padding-top: 3.2rem;
+  }
+
+  &__name {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 3.5rem;
+  }
+
+  &__item {
+    @include flex-box(space-between);
+
+    &:last-of-type {
+      align-items: center;
+    }
+
+    @include respond(phone) {
+      display: block;
+    }
+  }
+
+  &__item-left,
+  &__item-right {
+    flex-grow: 1;
+  }
+
+  &__item-right {
+    margin-top: 1.4rem;
+  }
+
+  &__item-content {
+    font-size: 1.6rem;
+    font-weight: 600;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.4rem;
+    }
+  }
+
+  &__item--borders {
+    margin-top: 5rem;
+  }
+
+  &__item-subcontent {
+    font-size: 1.4rem;
+    font-weight: 400;
+  }
+
+  &__item-subcontent--borders {
+    margin-right: 1.1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    box-shadow: 2px 2px 10px getColor("shadow-light");
+    margin-bottom: 1.4rem;
+    display: inline-block;
+  }
+}
+
+@include dark-mode {
+  .country-details {
+    &__item-subcontent--borders {
+      box-shadow: 2px 2px 10px getColor("shadow-dark");
+    }
+  }
+}

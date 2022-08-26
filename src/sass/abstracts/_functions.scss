@@ -1,0 +1,14 @@
+// GET COLOR
+@function getColor($color-name) {
+  @return map-get($map: $colors, $key: $color-name);
+}
+
+// GET BASE FONTS
+@function getBaseFont($name) {
+  @return map-get($map: $base-fonts, $key: $name);
+}
+
+// GET BUTTON SIZES
+@function getButtonSize($button-size) {
+  @return map-get($map: $button-sizes, $key: $button-size);
+}

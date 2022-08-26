@@ -1,0 +1,22 @@
+.navbar {
+  height: 100%;
+  @include flex-box(space-between, center);
+
+  &__title {
+    font-weight: 800;
+
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__item--btn {
+    font-size: 1.54rem;
+    font-weight: 600;
+    @include flex-box(center, center);
+  }
+
+  &__item-icon {
+    margin-right: 0.3rem;
+  }
+}

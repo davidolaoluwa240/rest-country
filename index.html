@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./src/images/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <title>Frontend Mentor - REST Countries API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/sass/main.scss" />
+    <script type="module" defer src="./src/js/controller.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header__container container">
+        <nav class="navbar">
+          <div class="navbar__brand">
+            <h1 class="navbar__title">Where in the world?</h1>
+          </div>
+          <button
+            type="button"
+            class="navbar__item navbar__item--btn btn btn--xm btn--primary btn--rounded-xm"
+          >
+            <!-- Dark Mode Icon -->
+            <span class="navbar__item-icon material-icons-outlined d-none">
+              dark_mode
+            </span>
+            <!-- Light Mode Icon -->
+            <span class="navbar__item-icon material-icons"> dark_mode </span>
+            <span class="navbar__item-text">Light Mode</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="main">
+      <div class="main__container">
+        <div class="search-main">
+          <!-- Search Filter -->
+          <div class="search-filter">
+            <div class="search-filter__container container">
+              <div class="search-filter__left">
+                <!-- Search Input -->
+                <form class="search" autocomplete="off">
+                  <div class="search__group">
+                    <label class="search__label" for="search-box"
+                      ><span class="search__icon material-icons-outlined">
+                        search
+                      </span></label
+                    >
+                    <input
+                      type="text"
+                      class="search__control"
+                      id="search-box"
+                      name="search"
+                      placeholder="Search for a country..."
+                    />
+                  </div>
+                </form>
+              </div>
+
+              <div class="search-filter__right">
+                <!-- Search Custom Select -->
+                <div class="custom-select">
+                  <div class="custom-select__box">
+                    <p class="custom-select__box-text">All</p>
+                    <span
+                      class="custom-select__box-icon toggle material-icons-outlined"
+                    >
+                      expand_less
+                    </span>
+                  </div>
+                  <div class="custom-select__dropdown d-none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Result -->
+          <div class="search-result">
+            <div class="search-result__container container"></div>
+          </div>
+        </div>
+
+        <div class="search-detail-main">
+          <!-- Search Detail -->
+          <div class="search-detail">
+            <div class="search-detail__container container">
+              <button
+                class="btn btn--sm btn--rounded-sm btn search-detail__btn btn--secondary"
+                type="button"
+              >
+                <span class="material-icons-outlined search-detail__icon">
+                  keyboard_backspace
+                </span>
+                <span class="search-detail__btn-text">Back</span>
+              </button>
+              <div class="search-detail__content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

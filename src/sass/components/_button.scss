@@ -1,0 +1,56 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    transition: background 0.3s ease-in;
+    text-decoration: none;
+  }
+
+  // Button Sizes
+  &--xm {
+    padding: getButtonSize("extra-small");
+  }
+
+  &--sm {
+    padding: getButtonSize("small");
+  }
+
+  // Button Radius
+  &--rounded-xm {
+    border-radius: 5px;
+  }
+
+  &--rounded-sm {
+    border-radius: 6px;
+  }
+
+  // Button Color
+  &--primary {
+    background: transparent;
+  }
+
+  &--secondary {
+    background: getColor("light");
+  }
+
+  &:hover {
+    background: getColor("hover-light");
+  }
+}
+
+@include dark-mode {
+  .btn {
+    // Button Color
+    &--secondary {
+      background: getColor("app-bar-dark");
+    }
+
+    &:hover {
+      background: getColor("hover-dark");
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.header {
+  height: 80px;
+  background: getColor("light");
+  box-shadow: 2px 0px 5px 1px getColor(shadow-light);
+
+  @include respond(phone) {
+    & {
+      height: 70px;
+    }
+  }
+}
+
+@include dark-mode {
+  .header {
+    background: getColor("app-bar-dark");
+    box-shadow: 2px 0px 5px 1px getColor(shadow-dark);
+  }
+}

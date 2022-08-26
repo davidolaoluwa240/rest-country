@@ -1,0 +1,62 @@
+.country-card {
+  position: relative;
+  background: getColor("light");
+  box-shadow: 2px 2px 10px getColor("shadow-light");
+  border-radius: 7px;
+  overflow: hidden;
+  transition: transform 0.3s linear;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+  &__link {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &__header {
+    overflow: hidden;
+    border-radius: 7px 7px 0px 0px;
+    height: 150px;
+  }
+
+  &__content {
+    padding: 2.3rem 2.3rem 3rem 2.3rem;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.7rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__info {
+    font-size: 1.7rem;
+    font-weight: 600;
+
+    &:not(:first-child) {
+      margin-top: 0.8rem;
+    }
+  }
+
+  &__info-content {
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+@include dark-mode {
+  .country-card {
+    background: getColor("dark-blue-100");
+    box-shadow: 2px 2px 10px getColor("shadow-dark");
+  }
+}

@@ -1,0 +1,59 @@
+$colors: (
+  "dark-blue-100": hsl(209, 23%, 22%),
+  "dark-blue-200": hsl(207, 26%, 17%),
+  "dark-blue-300": hsl(200, 15%, 8%),
+  "dark-blue": hsl(0, 0%, 52%),
+  "light-gray-100": hsl(0, 0%, 98%),
+  "light-gray-200": hsl(0, 0%, 80%),
+  "light-gray-300": hsla(0, 0%, 88%, 0.6),
+  "shadow-light": hsl(0, 1%, 78%),
+  "shadow-dark": hsl(209, 25%, 10%),
+  "hover-light": hsl(0, 2%, 91%),
+  "hover-dark": hsl(209, 25%, 50%),
+  "light": hsl(0, 0%, 100%),
+  "app-bar-dark": hsl(208, 23%, 22%),
+  "dark": hsl(0, 0%, 0%),
+);
+
+$weights: (
+  "default": 400,
+  "thick": 600,
+  "bold": 800,
+);
+
+$font-family: (
+  "font-family-normal": (
+    "Nunito Sans",
+    sans-serif,
+  ),
+);
+
+$base-fonts: (
+  "default-font-size": 1.6rem,
+  "default-font-family":
+    map-get(
+      $map: $font-family,
+      $key: "font-family-normal",
+    ),
+  "default-line-height": 22px,
+  "default-font-weight":
+    map-get(
+      $map: $weights,
+      $key: "default",
+    ),
+  "default-color":
+    map-get(
+      $map: $colors,
+      $key: "dark-blue-300",
+    ),
+  "default-background":
+    map-get(
+      $map: $colors,
+      $key: "light-gray-100",
+    ),
+);
+
+$button-sizes: (
+  "extra-small": 1rem 1rem,
+  "small": 0.8rem 2.7rem,
+);
