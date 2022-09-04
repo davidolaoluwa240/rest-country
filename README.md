@@ -1,1 +1,1 @@
-# REST Country
+# Rest Country
