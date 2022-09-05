@@ -18,9 +18,8 @@ class CountryDetailsView extends View {
 
   /**
    * Register an event and call the subscriber/handler when the event happens
-   * @param {function} handler Handler to be called when the url hash change and when the page is loaded
+   * @param {Function} handler Handler to be called when the url hash change and when the page is loaded
    * @returns {undefined} void
-   * @this {Object} CountryDetailsView instance
    */
   addHandlerUrlHashChangeLoadFire(handler) {
     window.addEventListener("hashchange", handler);
@@ -29,9 +28,8 @@ class CountryDetailsView extends View {
 
   /**
    * Register an event and call an handler when the back button is clicked
-   * @param {function} handler Function to be called when the event happens
+   * @param {Function} handler Handler to be called when the click event happens on the back button
    * @returns {undefined} void
-   * @this {Object} CountryDetailsView instance
    */
   addHandlerGoBack(handler) {
     this._parentEl
@@ -43,7 +41,6 @@ class CountryDetailsView extends View {
   /**
    * Make the country details view visible
    * @returns {undefined} void
-   * @this {Object} CountryDetailsView instance
    */
   activateCountryDetailsVisibility() {
     this._parentEl
@@ -54,7 +51,6 @@ class CountryDetailsView extends View {
   /**
    * Make the country details view in-visible
    * @returns {undefined} void
-   * @this {Object} CountryDetailsView instance
    */
   deactivateCountryDetailsVisibility() {
     this._parentEl
@@ -64,8 +60,8 @@ class CountryDetailsView extends View {
 
   /**
    * Generate markup for country details
+   * @access protected
    * @returns {string} html markup string
-   * @this {object} CountryDetailsView instance
    */
   _generateMarkup() {
     return `

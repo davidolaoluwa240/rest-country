@@ -7,7 +7,7 @@ import View from "./View";
 class SearchView extends View {
   /**
    * @constructor
-   * @returns {object} SearchView instance
+   * @returns {Object} SearchView instance
    */
   constructor() {
     super(document.querySelector(".search"));
@@ -15,9 +15,8 @@ class SearchView extends View {
 
   /**
    * Publisher function that register an event and call the subscriber/handler when the event happens
-   * @param {function} handler handler to be called when input event happen
+   * @param {Function} handler Handler to be called when input event happen
    * @returns {undefined} void
-   * @this {object} SearchView instance
    */
   addHandlerInput(handler) {
     this._parentEl

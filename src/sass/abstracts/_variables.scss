@@ -29,24 +29,24 @@ $font-family: (
 );
 
 $base-fonts: (
-  "default-font-size": 1.6rem,
-  "default-font-family":
+  "font-size": 1.6rem,
+  "font-family":
     map-get(
       $map: $font-family,
       $key: "font-family-normal",
     ),
-  "default-line-height": 22px,
-  "default-font-weight":
+  "line-height": 22px,
+  "font-weight":
     map-get(
       $map: $weights,
       $key: "default",
     ),
-  "default-color":
+  "color":
     map-get(
       $map: $colors,
       $key: "dark-blue-300",
     ),
-  "default-background":
+  "background":
     map-get(
       $map: $colors,
       $key: "light-gray-100",

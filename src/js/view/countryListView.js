@@ -20,7 +20,6 @@ class CountryListView extends View {
    * Register a load event and call the subscriber/handler when the event happens
    * @param {function} handler Subscriber/Handler to be called when the page is loaded
    * @returns {undefined} void
-   * @this {Object} CountryListView instance
    */
   addHandlerLoad(handler) {
     document.addEventListener("DOMContentLoaded", handler);
@@ -29,7 +28,6 @@ class CountryListView extends View {
   /**
    * Make the country list view visible
    * @returns {undefined} void
-   * @this {Object} CountryListView instance
    */
   activateCountryListVisibility() {
     this._parentEl.classList.remove("d-none");
@@ -38,7 +36,6 @@ class CountryListView extends View {
   /**
    * Make the country list view in-visible
    * @returns {undefined} void
-   * @this {Object} CountryListView instance
    */
   deactivateCountryListVisibility() {
     this._parentEl.classList.add("d-none");
@@ -46,8 +43,8 @@ class CountryListView extends View {
 
   /**
    * Combine multiple country card markup into one single markup string
+   * @access protected
    * @returns {string} markup string
-   * @this {Object} CountryListView instance
    */
   _generateMarkup() {
     return this._data.map(this._countryCardMarkup).join("");
@@ -55,8 +52,8 @@ class CountryListView extends View {
 
   /**
    * Generate single country card html markup string
+   * @access protected
    * @returns {string} markup string
-   * @this {Object} CountryListView instance
    */
   _countryCardMarkup(item) {
     return `

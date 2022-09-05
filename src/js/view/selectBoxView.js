@@ -16,8 +16,8 @@ class SelectBoxView extends View {
 
   /**
    * Toggle the select box icon/dropdown state
+   * @access protected
    * @returns {undefined} void
-   * @this {Object} SelectBoxView instance
    */
   _addHandlerSelectBoxClick() {
     this._parentEl.addEventListener("click", (e) => {
@@ -43,9 +43,8 @@ class SelectBoxView extends View {
 
   /**
    * Change the select box text based on the current filterby value
-   * @param {string} data current filterby value
+   * @param {string} data Current filterby value
    * @returns {undefined} void
-   * @this {Object} SelectBoxView instance
    */
   render(data) {
     this._data = data;
@@ -54,8 +53,8 @@ class SelectBoxView extends View {
 
   /**
    * Toggle select box icon state(active/inactive)
+   * @access protected
    * @returns {undefined} void
-   * @this {Object} SelectBoxView instance
    */
   _toggleSelectIconState() {
     const iconEl = this._parentEl.querySelector(".custom-select__box-icon");
@@ -64,8 +63,8 @@ class SelectBoxView extends View {
 
   /**
    * Toggle select box dropdown state(active/inactive)
+   * @access protected
    * @returns {undefined} void
-   * @this {Object} SelectBoxView instance
    */
   _toggleDropdownState() {
     const dropdownEl = this._parentEl.querySelector(".custom-select__dropdown");

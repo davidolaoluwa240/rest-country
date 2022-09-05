@@ -5,10 +5,10 @@ import "regenerator-runtime/runtime";
 // Model
 import * as Model from "./model";
 
-// Helper
+// Helpers
 import { catchAsync } from "./helper";
 
-// View
+// Views
 import themeView from "./view/themeView";
 import selectOptionsView from "./view/selectOptionsView";
 import selectBoxView from "./view/selectBoxView";
@@ -47,7 +47,7 @@ const controlFilter = catchAsync(async function (
   filterTerm = Model.state.filterTerm,
   filterBy = Model.state.filterBy
 ) {
-  // 1) Highlight the currently active select option item
+  // 1) Highlight the current active select option item
   selectOptionsView.highlightActiveItem(filterBy);
 
   // 2) Update the active text in the select box

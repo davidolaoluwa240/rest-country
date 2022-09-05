@@ -17,7 +17,6 @@ class SelectOptionsView extends View {
    * Publisher function that register an event, call the subscriber when the event happens
    * @param {Function} handler Subscriber/handler function, called when page is loaded
    * @returns {undefined} void
-   * @this {Object} SelectOptionsView instance
    */
   addHandlerLoad(handler) {
     document.addEventListener("DOMContentLoaded", handler);
@@ -27,7 +26,6 @@ class SelectOptionsView extends View {
    * Publisher function that register an event, call the subscriber when the event happens
    * @param {Function} handler Subscriber/handler function, called when select item is clicked
    * @returns {undefined} void
-   * @this {Object} SelectOptionsView instance
    */
   addHandlerClick(handler) {
     this._parentEl.addEventListener("click", function (e) {
@@ -41,10 +39,9 @@ class SelectOptionsView extends View {
   }
 
   /**
-   * Highlight the currently active select option item
-   * @param {string} filterBy currently active filter by value
+   * Highlight the current active select option item
+   * @param {string} filterBy Current active filter by value
    * @returns {undefined} void
-   * @this {Object} SelectOptionsView instance
    */
   highlightActiveItem(filterBy) {
     this._parentEl
@@ -60,8 +57,8 @@ class SelectOptionsView extends View {
 
   /**
    * Combine single html markup string into a multiple big string that will be rendered inside the parentElement in the DOM
-   * @returns {string} generated html markup string
-   * @this {Object} SelectOptionsView instance
+   * @access protected
+   * @returns {string} Generated html markup string
    */
   _generateMarkup() {
     return this._data.map(this._generateDropdownItemMarkup).join("");
@@ -70,8 +67,8 @@ class SelectOptionsView extends View {
   /**
    * Generate single dropdown item html markup string
    * @param {string} item country region data
-   * @returns {string} html markup string
-   * @this {Object} SelectOptionsView instance
+   * @access protected
+   * @returns {string} Html markup string
    */
   _generateDropdownItemMarkup(item) {
     return `

@@ -3,17 +3,19 @@
  */
 class View {
   /**
+   * Parent Element where content will be rendered
    * @access protected
    */
   _parentEl;
   /**
+   * View Data
    * @access protected
    */
   _data;
 
   /**
    * @constructor
-   * @param {Node} parentEl Parent Element that content will be rendered inside
+   * @param {HTMLElement} parentEl Parent Element that content will be rendered inside
    * @returns {Object} View instance
    */
   constructor(parentEl) {
@@ -23,7 +25,6 @@ class View {
   /**
    * Clear Parent Element Content
    * @returns {undefined} void
-   * @this {Object} View instance
    */
   _clear() {
     this._parentEl.innerHTML = "";
@@ -33,7 +34,6 @@ class View {
    * Render Content to the DOM
    * @param {any} data Data that will be rendered inside the parent element
    * @returns {undefined} void
-   * @this {Object} View instance
    */
   render(data) {
     this._data = data;
@@ -45,7 +45,6 @@ class View {
   /**
    * Render Loading Spinner
    * @returns {undefined} void
-   * @this {Object} View instance
    */
   renderSpinner() {
     const markup = `
@@ -59,9 +58,8 @@ class View {
 
   /**
    * Render Error
-   * @param {string} err error message
+   * @param {string} err Error message
    * @returns {undefined} void
-   * @this {Object} View instance
    */
   renderError = (err) => {
     const markup = `

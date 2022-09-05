@@ -59,6 +59,7 @@
   }
 }
 
+// Dark  Mode
 @include dark-mode {
   .custom-select {
     box-shadow: 2px 0px 4px 1px getColor("shadow-dark");

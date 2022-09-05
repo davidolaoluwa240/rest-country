@@ -3,7 +3,7 @@ import { FETCH_TIMEOUT_SECS } from "./config";
 
 /**
  * Custom Timeout Function
- * @param {number} sec seconds in which the timeout promise should be rejected
+ * @param {number} sec Seconds in which the timeout promise should be rejected
  * @returns {Promise} Promise
  */
 const timeout = function (sec) {
@@ -16,8 +16,8 @@ const timeout = function (sec) {
 };
 
 /**
- * Call Async Function and Catch Async Error By Re-throwing The Error
- * @param {function} cb Async function to be called
+ * Catch Async Error and Re-throw The Error
+ * @param {Function} cb Async function to be called
  * @returns {function} Async function
  */
 const catchAsyncThrow = function (cb) {
@@ -25,24 +25,22 @@ const catchAsyncThrow = function (cb) {
     try {
       return await cb(...data);
     } catch (err) {
-      console.log(err);
       throw err;
     }
   };
 };
 
 /**
- * Call Async Function and Catch Async Error By Calling Error Callback Function With Message
- * @param {function} cb Async function to be called
- * @param {function} errCb Error function to be called when an error occur
- * @returns {function} Async function
+ * Catch Async Error
+ * @param {Function} cb Async function to be called
+ * @param {Function} errCb Error function to be called when an error occur
+ * @returns {Function} Async function
  */
 const catchAsync = function (cb, errCb) {
   return async function (...data) {
     try {
       return await cb(...data);
     } catch (err) {
-      console.log(err);
       errCb(err.message);
     }
   };
@@ -64,8 +62,10 @@ const getJSON = catchAsyncThrow(async function (url) {
 /**
  * Format number based on a locale
  * @param {string} locale Country locale (eg. en-US)
- * @param {number} number Number to be formated
+ * @param {number} number Number to format
  * @returns {string} Formatted number based on the locale
+ * @example
+ * numberFormat("en-Us", 100000)
  */
 const numberFormat = function (locale = "en-US", number) {
   return new Intl.NumberFormat(locale).format(number);

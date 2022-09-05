@@ -10,6 +10,7 @@
   }
 }
 
+// Dark Mode
 @include dark-mode {
   .header {
     background: getColor("app-bar-dark");

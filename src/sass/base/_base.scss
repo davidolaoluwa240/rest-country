@@ -16,4 +16,16 @@ html {
 
 body {
   box-sizing: border-box;
+  color: getBaseFont("color");
+  background-color: getBaseFont("background");
+  min-height: 100vh;
+}
+
+
+// Dark Mode
+@include dark-mode {
+  body {
+    background-color: getColor("dark-blue-200");
+    color: getColor("light");
+  }
 }

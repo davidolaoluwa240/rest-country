@@ -1,10 +1,12 @@
-// Helper
+// Helpers
 import { getJSON, catchAsyncThrow } from "./helper";
 
-// Config
+// Configs
 import { API_URL } from "./config";
 
-// App State
+/**
+ * Application State
+ */
 export const state = {
   countries: [],
   selectedCountry: {},
@@ -45,7 +47,7 @@ export const loadCountry = catchAsyncThrow(
     // 1) Send Request
     const [data] = await getJSON(`${API_URL}name/${country}?fullText=true`);
 
-    // 2) When data is a falsy value, throw error
+    // 2) When data is undefined, throw error
     if (!data)
       throw new Error("Country not found. Please try with a different country");
 

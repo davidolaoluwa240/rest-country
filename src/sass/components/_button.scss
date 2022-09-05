@@ -6,7 +6,6 @@
     border: none;
     color: inherit;
     font-family: inherit;
-    transition: background 0.3s ease-in;
     text-decoration: none;
   }
 
@@ -42,6 +41,7 @@
   }
 }
 
+// Dark Mode
 @include dark-mode {
   .btn {
     // Button Color
