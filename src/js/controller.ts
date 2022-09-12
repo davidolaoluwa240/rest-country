@@ -2,7 +2,7 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-// Model
+// Models
 import * as Model from "./model";
 
 // Helpers
@@ -17,19 +17,17 @@ import countryListView from "./view/countryListView";
 import countryDetailsView from "./view/countryDetailsView";
 
 /**
- * Controller for theming
- * @returns {undefined} void
+ * Controller For Theming
  */
-const controlTheme = function () {
+const controlTheme = function (): void {
   // Render theme
   themeView.render();
 };
 
 /**
- * Controller for rendering all country regions inside the select option view
- * @returns {undefined} void
+ * Controller For Rendering All Country Regions Inside The Select Option View
  */
-const controlSelectOption = function () {
+const controlSelectOption = function (): void {
   // 1)  Get all country regions
   const regions = Model.state.countryRegions;
 
@@ -38,15 +36,14 @@ const controlSelectOption = function () {
 };
 
 /**
- * Controller For Filtering Countries Based on filterTerm and filterBy
+ * Controller For Filtering Countries Based On FilterTerm And FilterBy
  * @param {string} filterTerm Country name to filter
  * @param {string} filterBy Country region to filter
- * @returns {undefined} void
  */
 const controlFilter = catchAsync(async function (
-  filterTerm = Model.state.filterTerm,
-  filterBy = Model.state.filterBy
-) {
+  filterTerm: string = Model.state.filterTerm,
+  filterBy: string = Model.state.filterBy
+): Promise<void> {
   // 1) Highlight the current active select option item
   selectOptionsView.highlightActiveItem(filterBy);
 
@@ -56,79 +53,75 @@ const controlFilter = catchAsync(async function (
   // 3) Render loading Spinner
   countryListView.renderSpinner();
 
-  // 3) Perform filtering
+  // 4) Perform filtering
   await Model.filterCountries(filterTerm, filterBy);
 
-  // 4) Render Filtered Country Data
+  // 5) Render filtered country data
   countryListView.render(Model.state.filteredCountries);
 },
 countryListView.renderError);
 
 /**
  * Controller For Country List
- * @returns {undefined} void
  */
-const controlCountries = catchAsync(async function () {
-  // 1) Render Loading Spinner
+const controlCountries = catchAsync(async function (): Promise<void> {
+  // 1) Render loading spinner
   countryListView.renderSpinner();
 
-  // 2) Fetch Country Data
+  // 2) Fetch country data
   await Model.loadCountries();
 
-  // 3) Filter Country Data
+  // 3) Filter country data
   await Model.filterCountries(Model.state.filterTerm, Model.state.filterBy);
 
-  // 4) Render Filtered Country Data
+  // 4) Render filtered country fata
   countryListView.render(Model.state.filteredCountries);
 }, countryListView.renderError);
 
 /**
  * Controller For Country Details
- * @returns {undefined} void
  */
-const controlCountryDetails = catchAsync(async function () {
-  // 1) Get Country Name From the URL Hash
+const controlCountryDetails = catchAsync(async function (): Promise<void> {
+  // 1) Get country name from the URL Hash
   const countryName = window.location.hash.slice(1);
 
-  // 2) Return When CountryName Is Empty
+  // 2) Return when countryName is empty
   if (!countryName) return;
 
   // 3) Disable country list view
   countryListView.deactivateCountryListVisibility();
 
-  // 4) Show Country details View
+  // 4) Show country details view
   countryDetailsView.activateCountryDetailsVisibility();
 
-  // 5) Render Loading Spinner
+  // 5) Render loading spinner
   countryDetailsView.renderSpinner();
 
-  // 6) Fetch Country Data
+  // 6) Fetch country data
   await Model.loadCountry(countryName);
 
-  // 7) Render Country Data
+  // 7) Render country data
   countryDetailsView.render(Model.state.selectedCountry);
 }, countryDetailsView.renderError);
 
 /**
- * Controller to be called when the back button in the country details is clicked
- * @returns {undefined} void
+ * Controller To Be Called When The Back Button In The Country Details Is Clicked
  */
-const controlResetCountryDetails = function () {
+const controlResetCountryDetails = function (): void {
   // 1) Reset the url
   window.history.pushState(null, "", "/");
 
   // 2) Enable country list view
   countryListView.activateCountryListVisibility();
 
-  // 3) Hide country details
+  // 3) Hide country details view
   countryDetailsView.deactivateCountryDetailsVisibility();
 };
 
 /**
- * Called when the page is loaded
- * @returns {undefined} void
+ * Called When The Page Is Loaded
  */
-const init = function () {
+const init = function (): void {
   themeView.addHandlerThemeClick(controlTheme);
   selectOptionsView.addHandlerLoad(controlSelectOption);
   selectOptionsView.addHandlerClick(controlFilter);
@@ -140,8 +133,3 @@ const init = function () {
 
 // Bootstrap Application
 init();
-
-// Parcel Hot Module Reload
-if (module.hot) {
-  module.hot.accept();
-}
