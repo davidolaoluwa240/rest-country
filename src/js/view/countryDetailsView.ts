@@ -1,27 +1,25 @@
 // Helpers
 import { numberFormat } from "../helper";
 
+// Interfaces
+import { CountryTransformer } from "../interfaces/country";
+
 // View
 import View from "./View";
 
 /**
  * @class
  */
-class CountryDetailsView extends View {
-  /**
-   * @constructor
-   * @returns {Object} CountryDetailsView instance
-   */
+class CountryDetailsView extends View<CountryTransformer> {
   constructor() {
-    super(document.querySelector(".search-detail__content"));
+    super(document.querySelector(".search-detail__content") as HTMLElement);
   }
 
   /**
    * Register an event and call the subscriber/handler when the event happens
    * @param {Function} handler Handler to be called when the url hash change and when the page is loaded
-   * @returns {undefined} void
    */
-  addHandlerUrlHashChangeLoadFire(handler) {
+  addHandlerUrlHashChangeLoadFire(handler: () => Promise<void>): void {
     window.addEventListener("hashchange", handler);
     window.addEventListener("load", handler);
   }
@@ -29,85 +27,79 @@ class CountryDetailsView extends View {
   /**
    * Register an event and call an handler when the back button is clicked
    * @param {Function} handler Handler to be called when the click event happens on the back button
-   * @returns {undefined} void
    */
-  addHandlerGoBack(handler) {
-    this._parentEl
-      .closest(".search-detail__container")
-      .querySelector(".search-detail__btn")
-      .addEventListener("click", handler);
+  addHandlerGoBack(handler: () => void): void {
+    (
+      (
+        this.parentEl.closest(".search-detail__container") as HTMLElement
+      ).querySelector(".search-detail__btn") as HTMLElement
+    ).addEventListener("click", handler);
   }
 
   /**
    * Make the country details view visible
-   * @returns {undefined} void
    */
-  activateCountryDetailsVisibility() {
-    this._parentEl
-      .closest(".main__container")
-      .classList.add("main__container--right");
+  activateCountryDetailsVisibility(): void {
+    (this.parentEl.closest(".main__container") as HTMLElement).classList.add(
+      "main__container--right"
+    );
   }
 
   /**
    * Make the country details view in-visible
-   * @returns {undefined} void
    */
-  deactivateCountryDetailsVisibility() {
-    this._parentEl
-      .closest(".main__container")
-      .classList.remove("main__container--right");
+  deactivateCountryDetailsVisibility(): void {
+    (this.parentEl.closest(".main__container") as HTMLElement).classList.remove(
+      "main__container--right"
+    );
   }
 
   /**
-   * Generate markup for country details
-   * @access protected
-   * @returns {string} html markup string
+   * Generate Markup
    */
-  _generateMarkup() {
+  generateMarkup(): string {
     return `
         <div class="country-details">
             <div class="country-details__left">
                 <img class="country-details__photo img-fluid" src="${
-                  this._data.flags?.png
-                }" alt="${this._data.name?.common}" />
+                  this.data.flag
+                }" alt="${this.data.countryName}" />
             </div> 
             <div class="country-details__right">
-                <h2 class="country-details__name">${
-                  this._data.name?.common
-                }</h2>
+                <h2 class="country-details__name">${this.data.countryName}</h2>
                 <div class="country-details__item">
                     <div class="country-details__item-left">
                         <p class="country-details__item-content">Native Name: <span class="country-details__item-subcontent">${
-                          this._data.name?.common
+                          this.data.countryName
                         }</span></p>
                          <p class="country-details__item-content">Population: <span class="country-details__item-subcontent">${numberFormat(
                            undefined,
-                           +this._data.population
+                           +this.data.population
                          )}</span></p>
                          <p class="country-details__item-content">Region: <span class="country-details__item-subcontent">${
-                           this._data.region
+                           this.data.region
                          }</span></p>
                           <p class="country-details__item-content">Sub Region: <span class="country-details__item-subcontent">${
-                            this._data.subregion
+                            this.data.subregion
                           }</span></p>
-                           <p class="country-details__item-content">Capital: <span class="country-details__item-subcontent">${this._data.capital?.join(
+                           <p class="country-details__item-content">Capital: <span class="country-details__item-subcontent">${this.data.capital?.join(
                              ", "
                            )}</span></p>
                     </div>
                     <div class="country-details__item-right">
-                        <p class="country-details__item-content">Top Level Domain: <span class="country-details__item-subcontent">${this._data.tld?.join(
+                        <p class="country-details__item-content">Top Level Domain: <span class="country-details__item-subcontent">${this.data.topLevelDomain?.join(
                           ", "
                         )}</span></p>
                         <p class="country-details__item-content">Currencies: <span class="country-details__item-subcontent">${Object.keys(
-                          this._data.currencies
+                          this.data.currencies
                         ).join(", ")}</span></p> 
                         <p class="country-details__item-content">Languages: <span class="country-details__item-subcontent">${Object.values(
-                          this._data.languages
+                          this.data.languages
                         ).join(", ")}</span></p>
                     </div>
                 </div>  
                 ${
-                  this._data.borders?.length
+                  this.data.borders?.length
                     ? `
                       <div class="country-details__item country-details__item--borders">
                         <div class="country-details__item-left">
@@ -116,7 +108,7 @@ class CountryDetailsView extends View {
                           </p>
                         </div>
                         <div class="country-details__item-right">
-                           ${this._data.borders
+                           ${this.data.borders
                              .map(
                                (border) =>
                                  `<span class="country-details__item-subcontent country-details__item-subcontent--borders btn btn--sm btn--rounded-xm btn--secondary">

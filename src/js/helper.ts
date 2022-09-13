@@ -69,7 +69,8 @@ const numberFormat = function (locale: string = "en-US", value: number) {
  */
 const countryTransformer = function (
   country: Country
-): CountryTransformer | any {
+): CountryTransformer  {
+  console.log(country);
   return {
     countryName: country.name.common,
     flag: country.flags.png,

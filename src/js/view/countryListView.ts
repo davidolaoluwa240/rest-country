@@ -1,5 +1,8 @@
-// Helper
+// Helpers
 import { numberFormat } from "../helper";
+
+// Interfaces
+import { CountryTransformer } from "../interfaces/country";
 
 // View
 import View from "./View";
@@ -7,70 +10,60 @@ import View from "./View";
 /**
  * @class
  */
-class CountryListView extends View {
-  /**
-   * @constructor
-   * @returns {Object} CountryListView instance
-   */
+class CountryListView extends View<CountryTransformer[]> {
   constructor() {
-    super(document.querySelector(".search-result__container"));
+    super(document.querySelector(".search-result__container") as HTMLElement);
   }
 
   /**
    * Register a load event and call the subscriber/handler when the event happens
-   * @param {function} handler Subscriber/Handler to be called when the page is loaded
-   * @returns {undefined} void
+   * @param {Function} handler Subscriber/Handler to be called when the page is loaded
    */
-  addHandlerLoad(handler) {
+  addHandlerLoad<T>(handler: () => T): void {
     document.addEventListener("DOMContentLoaded", handler);
   }
 
   /**
    * Make the country list view visible
-   * @returns {undefined} void
    */
-  activateCountryListVisibility() {
-    this._parentEl.classList.remove("d-none");
+  activateCountryListVisibility(): void {
+    this.parentEl.classList.remove("d-none");
   }
 
   /**
    * Make the country list view in-visible
-   * @returns {undefined} void
    */
-  deactivateCountryListVisibility() {
-    this._parentEl.classList.add("d-none");
+  deactivateCountryListVisibility(): void {
+    this.parentEl.classList.add("d-none");
   }
 
   /**
-   * Combine multiple country card markup into one single markup string
-   * @access protected
-   * @returns {string} markup string
+   * Generate Markup
    */
-  _generateMarkup() {
-    return this._data.map(this._countryCardMarkup).join("");
+  generateMarkup(): string {
+    return this.data.map(this.countryCardMarkup).join("");
   }
 
   /**
-   * Generate single country card html markup string
-   * @access protected
-   * @returns {string} markup string
+   * Generate Country Card Markup
+   * @access private
    */
-  _countryCardMarkup(item) {
+  private countryCardMarkup(item: CountryTransformer): string {
     return `
         <article class="country-card">
-            <a class="country-card__link" href="#${item.name.common}"></a>
+            <a class="country-card__link" href="#${item.countryName}"></a>
             <header class="country-card__header">
                 <img class="country-card__photo img-fluid" src="${
-                  item.flags.png
-                }" alt="${item.name.common}" />
+                  item.flag
+                }" alt="${item.countryName}" />
             </header>
             <div class="country-card__content">
-                <h2 class="country-card__title" title="${item.name.common}">${
-      item.name.common
+                <h2 class="country-card__title" title="${item.countryName}">${
+      item.countryName
     }</h2>
                 <h3 class="country-card__info">Population: <span class="country-card__info-content">${numberFormat(
                   undefined,
-                  +item.population
+                  item.population
                 )}</span></h3>
                 <h3 class="country-card__info">Region: <span class=" country-card__info-content">${
                   item.region

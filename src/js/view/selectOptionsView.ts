@@ -4,31 +4,27 @@ import View from "./View";
 /**
  * @class
  */
-class SelectOptionsView extends View {
-  /**
-   * @constructor
-   * @returns {Object} SelectOptionsView instance
-   */
+class SelectOptionsView extends View<Array<string>> {
   constructor() {
-    super(document.querySelector(".custom-select__dropdown"));
+    super(document.querySelector(".custom-select__dropdown") as HTMLElement);
   }
 
   /**
    * Publisher function that register an event, call the subscriber when the event happens
    * @param {Function} handler Subscriber/handler function, called when page is loaded
-   * @returns {undefined} void
    */
-  addHandlerLoad(handler) {
+  addHandlerLoad(handler: () => void): void {
     document.addEventListener("DOMContentLoaded", handler);
   }
 
   /**
    * Publisher function that register an event, call the subscriber when the event happens
    * @param {Function} handler Subscriber/handler function, called when select item is clicked
-   * @returns {undefined} void
    */
-  addHandlerClick(handler) {
-    this._parentEl.addEventListener("click", function (e) {
+  addHandlerClick(
+    handler: (filterTerm?: string, filterBy?: string) => Promise<void>
+  ) {
+    this.parentEl.addEventListener("click", function (e) {
       const selectOptionItem = e.target.closest(
         ".custom-select__dropdown-item"
       );
@@ -41,12 +37,11 @@ class SelectOptionsView extends View {
   /**
    * Highlight the current active select option item
    * @param {string} filterBy Current active filter by value
-   * @returns {undefined} void
    */
-  highlightActiveItem(filterBy) {
-    this._parentEl
+  highlightActiveItem(filterBy: string): void {
+    this.parentEl
       .querySelectorAll(".custom-select__dropdown-item")
-      .forEach((el) => {
+      .forEach((el: Element): void => {
         const filter = el.dataset.filter;
         filter === filterBy &&
           el.classList.add("custom-select__dropdown-item--active");
@@ -56,21 +51,18 @@ class SelectOptionsView extends View {
   }
 
   /**
-   * Combine single html markup string into a multiple big string that will be rendered inside the parentElement in the DOM
-   * @access protected
-   * @returns {string} Generated html markup string
+   * Generate markup
    */
-  _generateMarkup() {
-    return this._data.map(this._generateDropdownItemMarkup).join("");
+  generateMarkup(): string {
+    return this.data.map(this.generateDropdownItemMarkup).join("");
   }
 
   /**
-   * Generate single dropdown item html markup string
+   * Generate dropdown item markup
    * @param {string} item country region data
-   * @access protected
-   * @returns {string} Html markup string
+   * @access private
    */
-  _generateDropdownItemMarkup(item) {
+  private generateDropdownItemMarkup(item: string): string {
     return `
        <div
             class="custom-select__dropdown-item"

@@ -16,6 +16,9 @@ import searchView from "./view/searchView";
 import countryListView from "./view/countryListView";
 import countryDetailsView from "./view/countryDetailsView";
 
+// Interfaces
+import { CountryTransformer } from "./interfaces/country";
+
 /**
  * Controller For Theming
  */
@@ -101,7 +104,7 @@ const controlCountryDetails = catchAsync(async function (): Promise<void> {
   await Model.loadCountry(countryName);
 
   // 7) Render country data
-  countryDetailsView.render(Model.state.selectedCountry);
+  countryDetailsView.render(Model.state.selectedCountry as CountryTransformer);
 }, countryDetailsView.renderError);
 
 /**

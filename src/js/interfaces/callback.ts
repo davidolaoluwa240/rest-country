@@ -1,5 +1,5 @@
 export interface Callback {
-  (...data: any[]): Promise<void>;
+  (): Promise<void>;
 }
 
 export interface ErrorCallback {
