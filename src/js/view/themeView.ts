@@ -11,15 +11,15 @@ class ThemeView extends View<string> {
   }
 
   /**
-   * A publisher function that register an event and call the subscriber/handler when it happens
-   * @param {Function} handler A subscriber function, called when click event happens on the parent element
+   * Publisher Function
+   * @param {Function} handler Handler to called when click event happen on the parent element
    */
   addHandlerThemeClick(handler: () => void): void {
     this.parentEl.addEventListener("click", handler);
   }
 
   /**
-   * Perform toggling of theme, replace icon, text, page theme color based on current theme
+   * Perform Toggling Of Theme, Replace Icon, Text, Page Theme Color Based On Current Theme
    */
   render(): void {
     this.data = this.toggleTheme();
@@ -29,7 +29,7 @@ class ThemeView extends View<string> {
   }
 
   /**
-   * Perform toggling of theme value
+   * Perform Toggling Of Theme Value
    * @access private
    */
   private toggleTheme(): string {
@@ -37,7 +37,7 @@ class ThemeView extends View<string> {
   }
 
   /**
-   * Perform replacing icon based on current theme value
+   * Perform Replacing Icon Based On Current Theme Value
    * @access private
    */
   private replaceIcon(): void {
@@ -48,7 +48,7 @@ class ThemeView extends View<string> {
   }
 
   /**
-   * Perform replacing of theme button text content based on current theme value
+   * Perform Replacing Of Theme Button Text Content Based On Current Theme Value
    * @access private
    */
   private replaceTextContent(): void {
@@ -59,7 +59,7 @@ class ThemeView extends View<string> {
   }
 
   /**
-   * Perform changing of page color based on current theme value
+   * Perform Changing Of Page Color Based On Current Theme Value
    * @access private
    */
   private changePageTheme(): void {

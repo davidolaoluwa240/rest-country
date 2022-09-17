@@ -16,8 +16,8 @@ class CountryDetailsView extends View<CountryTransformer> {
   }
 
   /**
-   * Register an event and call the subscriber/handler when the event happens
-   * @param {Function} handler Handler to be called when the url hash change and when the page is loaded
+   * Publisher Function
+   * @param {Function} handler Handler to be called when the url hash change and first page load
    */
   addHandlerUrlHashChangeLoadFire(handler: () => Promise<void>): void {
     window.addEventListener("hashchange", handler);
@@ -25,33 +25,37 @@ class CountryDetailsView extends View<CountryTransformer> {
   }
 
   /**
-   * Register an event and call an handler when the back button is clicked
+   * Publisher Function
    * @param {Function} handler Handler to be called when the click event happens on the back button
    */
   addHandlerGoBack(handler: () => void): void {
-    (
-      (
-        this.parentEl.closest(".search-detail__container") as HTMLElement
-      ).querySelector(".search-detail__btn") as HTMLElement
-    ).addEventListener("click", handler);
+    const searchDetailContainer = this.parentEl.closest(
+      ".search-detail__container"
+    ) as HTMLElement;
+    const searchDetailBtn = searchDetailContainer.querySelector(
+      ".search-detail__btn"
+    ) as HTMLElement;
+    searchDetailBtn.addEventListener("click", handler);
   }
 
   /**
-   * Make the country details view visible
+   * Make The Country Details View Visible
    */
   activateCountryDetailsVisibility(): void {
-    (this.parentEl.closest(".main__container") as HTMLElement).classList.add(
-      "main__container--right"
-    );
+    const mainContainer = this.parentEl.closest(
+      ".main__container"
+    ) as HTMLElement;
+    mainContainer.classList.add("main__container--right");
   }
 
   /**
-   * Make the country details view in-visible
+   * Make The Country Details View In-visible
    */
   deactivateCountryDetailsVisibility(): void {
-    (this.parentEl.closest(".main__container") as HTMLElement).classList.remove(
-      "main__container--right"
-    );
+    const mainContainer = this.parentEl.closest(
+      ".main__container"
+    ) as HTMLElement;
+    mainContainer.classList.remove("main__container--right");
   }
 
   /**
@@ -90,12 +94,12 @@ class CountryDetailsView extends View<CountryTransformer> {
                         <p class="country-details__item-content">Top Level Domain: <span class="country-details__item-subcontent">${this.data.topLevelDomain?.join(
                           ", "
                         )}</span></p>
-                        <p class="country-details__item-content">Currencies: <span class="country-details__item-subcontent">${Object.keys(
-                          this.data.currencies
-                        ).join(", ")}</span></p> 
-                        <p class="country-details__item-content">Languages: <span class="country-details__item-subcontent">${Object.values(
-                          this.data.languages
-                        ).join(", ")}</span></p>
+                        <p class="country-details__item-content">Currencies: <span class="country-details__item-subcontent">${this.data.currencies.join(
+                          ", "
+                        )}</span></p> 
+                        <p class="country-details__item-content">Languages: <span class="country-details__item-subcontent">${this.data.languages.join(
+                          ", "
+                        )}</span></p>
                     </div>
                 </div>  
                 ${

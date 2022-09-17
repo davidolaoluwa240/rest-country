@@ -11,38 +11,43 @@ class SelectBoxView extends View<string> {
   }
 
   /**
-   * Toggle the select box icon/dropdown state
+   * Toggle The Select Box Icon/Dropdown State
    * @access private
    */
   private addHandlerSelectBoxClick(): void {
-    this.parentEl.addEventListener("click", (e) => {
-      const dropdownEl = e.target.closest(".custom-select__dropdown");
-      const selectBoxEl = e.target.closest(".custom-select__box");
+    const performTogglingDropdownIconState = () => {
+      this.toggleDropdownState();
+      this.toggleSelectIconState();
+    };
+
+    this.parentEl.addEventListener("click", (e: Event): void => {
+      const target = e.target as Element;
+      const dropdownEl = target.closest(".custom-select__dropdown");
+      const selectBoxEl = target.closest(".custom-select__box");
       if (dropdownEl || selectBoxEl) {
-        this.toggleDropdownState();
-        this.toggleSelectIconState();
+        performTogglingDropdownIconState();
       }
     });
 
-    document.body.addEventListener("click", (e) => {
+    document.body.addEventListener("click", (e: Event): void => {
+      const target = e.target as Element;
       const iconEl = this.parentEl.querySelector(
         ".custom-select__box-icon"
       ) as HTMLElement;
       if (
-        this.parentEl.contains(e.target) ||
+        this.parentEl.contains(target) ||
         !iconEl.classList.contains("toggle--active")
       )
         return;
-      this.toggleDropdownState();
-      this.toggleSelectIconState();
+      performTogglingDropdownIconState();
     });
   }
 
   /**
-   * Change the select box text based on the current filterby value
+   * Change The Select Box Text Based On The Current Filterby Value
    * @param {string} data Current filterby value
    */
-  render(data: string) {
+  render(data: string): void {
     this.data = data;
     (
       this.parentEl.querySelector(".custom-select__box-text") as HTMLElement
@@ -50,7 +55,7 @@ class SelectBoxView extends View<string> {
   }
 
   /**
-   * Toggle select box icon state(active/inactive)
+   * Toggle Select Box Icon State(Active/Inactive)
    * @access private
    */
   private toggleSelectIconState(): void {
@@ -61,7 +66,7 @@ class SelectBoxView extends View<string> {
   }
 
   /**
-   * Toggle select box dropdown state(active/inactive)
+   * Toggle Select Box Dropdown State(Active/Inactive)
    * @access private
    */
   private toggleDropdownState() {

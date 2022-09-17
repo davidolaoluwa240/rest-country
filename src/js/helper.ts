@@ -19,7 +19,7 @@ const timeout = function (sec: number): Promise<Error> {
 };
 
 /**
- * Catch Async Error
+ * Catch Async Error And Handle Error By Calling the ErrorCallback
  * @param {Function} cb Callback function
  * @param {Function} errCb Error callback function
  */
@@ -29,37 +29,41 @@ const catchAsync = function (
 ): (...data: any[]) => Promise<void> {
   return async function (...data: any[]): Promise<void> {
     try {
-      await cb.apply(null, data);
+      await cb(...data);
     } catch (err) {
-      console.log(err);
       errCb(err.message);
     }
   };
 };
 
 /**
- * Custom Fetch function
+ * Custom Fetch Function
  * @param {string} url URL to make request to
  */
-const getJSON = async function <T>(url: string): Promise<T | void> {
+const getJSON = async function <T>(url: string): Promise<T> {
   const res = await Promise.race([fetch(url), timeout(FETCH_TIMEOUT_SECS)]);
-  if (!(res instanceof Response)) return;
-  const data = await res.json();
-  if (res.status === 404)
-    throw new Error("Could not find the specified country");
-  if (res.status === 500)
-    throw new Error("Something went wrong. Please try again later");
-  return data;
+  if (res instanceof Response) {
+    const data = await res.json();
+    if (res.status === 404)
+      throw new Error("Could not find the specified country");
+    if (res.status === 500)
+      throw new Error("Something went wrong. Please try again later");
+    return data;
+  }
+  throw null;
 };
 
 /**
- * Format number based on a locale
- * @param {string} locale Country locale (eg. en-US)
+ * Format Number Based On A Locale
+ * @param {string} locale locale (eg. en-US)
  * @param {number} value Number to format
  * @example
  * numberFormat("en-Us", 100000)
  */
-const numberFormat = function (locale: string = "en-US", value: number) {
+const numberFormat = function (
+  locale: string = "en-US",
+  value: number
+): string {
   return new Intl.NumberFormat(locale).format(value);
 };
 
@@ -67,10 +71,7 @@ const numberFormat = function (locale: string = "en-US", value: number) {
  * Transform Country Data
  * @param {Country} country Country data
  */
-const countryTransformer = function (
-  country: Country
-): CountryTransformer  {
-  console.log(country);
+const countryTransformer = function (country: Country): CountryTransformer {
   return {
     countryName: country.name.common,
     flag: country.flags.png,
@@ -80,8 +81,8 @@ const countryTransformer = function (
     borders: country.borders,
     topLevelDomain: country.tld,
     subregion: country.subregion,
-    currencies: Object.keys(country.currencies),
-    languages: Object.values(country.languages),
+    currencies: Object.keys(country.currencies || []),
+    languages: Object.values(country.languages || []),
   };
 };
 

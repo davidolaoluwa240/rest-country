@@ -1,7 +1,9 @@
+// Callback Interface
 export interface Callback {
-  (): Promise<void>;
+  (...data: any[]): Promise<void>;
 }
 
+// Error Callback Interface
 export interface ErrorCallback {
   (message: string): void;
 }

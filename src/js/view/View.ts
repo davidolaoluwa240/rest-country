@@ -3,7 +3,7 @@
  */
 abstract class View<T> {
   /**
-   * Parent Element where content will be rendered
+   * Parent Element Where Content Will Be Rendered
    * @access protected
    */
   protected parentEl: HTMLElement;
@@ -26,7 +26,7 @@ abstract class View<T> {
   }
 
   /**
-   * Generate markup based on data value
+   * Generate Markup Based On View Data
    */
   public generateMarkup(): string {
     return "";

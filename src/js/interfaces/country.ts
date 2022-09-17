@@ -1,3 +1,4 @@
+// Transformed Country Interface
 export interface CountryTransformer {
   countryName: string;
   flag: string;
@@ -11,6 +12,7 @@ export interface CountryTransformer {
   languages: string[];
 }
 
+// Country Interface
 export interface Country {
   name: CountryName;
   flags: CountryFlag;

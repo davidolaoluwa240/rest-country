@@ -62,7 +62,7 @@ const controlFilter = catchAsync(async function (
   // 5) Render filtered country data
   countryListView.render(Model.state.filteredCountries);
 },
-countryListView.renderError);
+countryListView.renderError.bind(countryListView));
 
 /**
  * Controller For Country List
@@ -77,9 +77,9 @@ const controlCountries = catchAsync(async function (): Promise<void> {
   // 3) Filter country data
   await Model.filterCountries(Model.state.filterTerm, Model.state.filterBy);
 
-  // 4) Render filtered country fata
+  // 4) Render filtered country data
   countryListView.render(Model.state.filteredCountries);
-}, countryListView.renderError);
+}, countryListView.renderError.bind(countryListView));
 
 /**
  * Controller For Country Details
@@ -105,7 +105,7 @@ const controlCountryDetails = catchAsync(async function (): Promise<void> {
 
   // 7) Render country data
   countryDetailsView.render(Model.state.selectedCountry as CountryTransformer);
-}, countryDetailsView.renderError);
+}, countryDetailsView.renderError.bind(countryDetailsView));
 
 /**
  * Controller To Be Called When The Back Button In The Country Details Is Clicked
@@ -122,13 +122,13 @@ const controlResetCountryDetails = function (): void {
 };
 
 /**
- * Called When The Page Is Loaded
+ * Main
  */
 const init = function (): void {
   themeView.addHandlerThemeClick(controlTheme);
+  searchView.addHandlerInput(controlFilter);
   selectOptionsView.addHandlerLoad(controlSelectOption);
   selectOptionsView.addHandlerClick(controlFilter);
-  searchView.addHandlerInput(controlFilter);
   countryListView.addHandlerLoad(controlCountries);
   countryDetailsView.addHandlerUrlHashChangeLoadFire(controlCountryDetails);
   countryDetailsView.addHandlerGoBack(controlResetCountryDetails);

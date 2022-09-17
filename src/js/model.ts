@@ -34,20 +34,18 @@ export const loadCountries = async function (): Promise<void> {
   if (this.countries.length) return;
 
   // 2) Send request
-  const data = await getJSON<Country[]>(`${API_URL}/all`);
+  const countries = await getJSON<Country[]>(`${API_URL}/all`);
 
   // 3) When data is empty, throw error
-  if (!data || !data.length) throw new Error("No countries data");
+  if (!countries || !countries.length) throw new Error("No countries data");
 
   // 4) Transform country data
-  const transformedData = data.map(
+  const transformedCountries = countries.map(
     (country: Country): CountryTransformer => countryTransformer(country)
   );
 
-  console.log(transformedData);
-
   // 5) Update state
-  this.countries = transformedData;
+  this.countries = transformedCountries;
 }.bind(state);
 
 /**
@@ -56,19 +54,19 @@ export const loadCountries = async function (): Promise<void> {
  */
 export const loadCountry = async function (countryName: string): Promise<void> {
   // 1) Send request
-  const data = await getJSON<Country[]>(
+  const country = await getJSON<Country[]>(
     `${API_URL}/name/${countryName}?fullText=true`
   );
 
   // 2) When data is undefined, throw error
-  if (!data?.[0])
+  if (!country?.[0])
     throw new Error("Country not found. Please try with a different country");
 
   // 3) Transform country data
-  const transformedData = countryTransformer(data[0]);
+  const transformedCountry = countryTransformer(country[0]);
 
   // 4) Update state
-  this.selectedCountry = transformedData;
+  this.selectedCountry = transformedCountry;
 }.bind(state);
 
 /**

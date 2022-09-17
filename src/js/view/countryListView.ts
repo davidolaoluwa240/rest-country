@@ -16,22 +16,22 @@ class CountryListView extends View<CountryTransformer[]> {
   }
 
   /**
-   * Register a load event and call the subscriber/handler when the event happens
-   * @param {Function} handler Subscriber/Handler to be called when the page is loaded
+   * Publisher Function
+   * @param {Function} handler Handler to be called when the page is loaded
    */
-  addHandlerLoad<T>(handler: () => T): void {
+  addHandlerLoad(handler: () => Promise<void>): void {
     document.addEventListener("DOMContentLoaded", handler);
   }
 
   /**
-   * Make the country list view visible
+   * Make The Country List View Visible
    */
   activateCountryListVisibility(): void {
     this.parentEl.classList.remove("d-none");
   }
 
   /**
-   * Make the country list view in-visible
+   * Make The Country List View In-visible
    */
   deactivateCountryListVisibility(): void {
     this.parentEl.classList.add("d-none");
@@ -68,9 +68,11 @@ class CountryListView extends View<CountryTransformer[]> {
                 <h3 class="country-card__info">Region: <span class=" country-card__info-content">${
                   item.region
                 }</span></h3>
-                <h3 class="country-card__info">Capital: <span class="country-card__info-content ${
-                  !item.capital ? "d-none" : ""
-                }">${item.capital?.[0]}</span></h3>
+                <h3 class="country-card__info ${
+                  !item.capital || !item.capital?.[0] ? "d-none" : ""
+                }">Capital: <span class="country-card__info-content">${
+      item.capital?.[0]
+    }</span></h3>
             </div>
         </article>
     `;

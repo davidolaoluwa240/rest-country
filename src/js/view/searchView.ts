@@ -10,16 +10,18 @@ class SearchView extends View<string> {
   }
 
   /**
-   * Publisher function that register an event and call the subscriber/handler when the event happens
-   * @param {Function} handler Handler to be called when input event happen
+   * Publisher Function
+   * @param {Function} handler Handler to be called when input event happen on the search input
    */
   addHandlerInput(
     handler: (filterTerm?: string, filterBy?: string) => Promise<void>
   ): void {
-    (
-      this.parentEl.querySelector(".search__control") as HTMLInputElement
-    ).addEventListener("input", (e): void => {
-      handler(e.target.value, undefined);
+    const inputEl = this.parentEl.querySelector(
+      ".search__control"
+    ) as HTMLInputElement;
+    inputEl.addEventListener("input", (e: Event): void => {
+      const target = e.target as HTMLInputElement;
+      handler(target.value, undefined);
     });
   }
 }
