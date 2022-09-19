@@ -55,7 +55,7 @@ class ThemeView extends View<string> {
     const themeBtnText = this.parentEl.querySelector(
       ".navbar__item-text"
     ) as HTMLElement;
-    themeBtnText.textContent = `${this.toggleTheme()} Mode`;
+    themeBtnText.textContent = `${this.toggleTheme()} mode`;
   }
 
   /**
@@ -68,4 +68,4 @@ class ThemeView extends View<string> {
   }
 }
 
-export default new ThemeView();
+export default ThemeView;

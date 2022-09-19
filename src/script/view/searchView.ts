@@ -26,4 +26,4 @@ class SearchView extends View<string> {
   }
 }
 
-export default new SearchView();
+export default SearchView;

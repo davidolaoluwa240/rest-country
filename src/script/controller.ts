@@ -9,15 +9,23 @@ import * as Model from "./model";
 import { catchAsync } from "./helper";
 
 // Views
-import themeView from "./view/themeView";
-import selectOptionsView from "./view/selectOptionsView";
-import selectBoxView from "./view/selectBoxView";
-import searchView from "./view/searchView";
-import countryListView from "./view/countryListView";
-import countryDetailsView from "./view/countryDetailsView";
+import ThemeView from "./view/ThemeView";
+import SelectOptionsView from "./view/SelectOptionsView";
+import SelectBoxView from "./view/SelectBoxView";
+import SearchView from "./view/SearchView";
+import CountryListView from "./view/CountryListView";
+import CountryDetailsView from "./view/CountryDetailsView";
 
 // Interfaces
 import { CountryTransformer } from "./interfaces/country";
+
+// Views Instance
+const themeView = new ThemeView();
+const selectOptionsView = new SelectOptionsView();
+const selectBoxView = new SelectBoxView();
+const searchView = new SearchView();
+const countryListView = new CountryListView();
+const countryDetailsView = new CountryDetailsView();
 
 /**
  * Controller For Theming
@@ -57,7 +65,7 @@ const controlFilter = catchAsync(async function (
   countryListView.renderSpinner();
 
   // 4) Perform filtering
-  await Model.filterCountries(filterTerm, filterBy);
+  await Model.filterCountries.call(Model.state, filterTerm, filterBy);
 
   // 5) Render filtered country data
   countryListView.render(Model.state.filteredCountries);
@@ -72,10 +80,14 @@ const controlCountries = catchAsync(async function (): Promise<void> {
   countryListView.renderSpinner();
 
   // 2) Fetch country data
-  await Model.loadCountries();
+  await Model.loadCountries.call(Model.state);
 
   // 3) Filter country data
-  await Model.filterCountries(Model.state.filterTerm, Model.state.filterBy);
+  await Model.filterCountries.call(
+    Model.state,
+    Model.state.filterTerm,
+    Model.state.filterBy
+  );
 
   // 4) Render filtered country data
   countryListView.render(Model.state.filteredCountries);
@@ -101,7 +113,7 @@ const controlCountryDetails = catchAsync(async function (): Promise<void> {
   countryDetailsView.renderSpinner();
 
   // 6) Fetch country data
-  await Model.loadCountry(countryName);
+  await Model.loadCountry.call(Model.state, countryName);
 
   // 7) Render country data
   countryDetailsView.render(Model.state.selectedCountry as CountryTransformer);

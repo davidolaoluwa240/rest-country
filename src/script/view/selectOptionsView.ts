@@ -76,4 +76,4 @@ class SelectOptionsView extends View<string[]> {
   }
 }
 
-export default new SelectOptionsView();
+export default SelectOptionsView;

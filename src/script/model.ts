@@ -46,7 +46,7 @@ export const loadCountries = async function (): Promise<void> {
 
   // 5) Update state
   this.countries = transformedCountries;
-}.bind(state);
+};
 
 /**
  * Load Single Country Data
@@ -67,7 +67,7 @@ export const loadCountry = async function (countryName: string): Promise<void> {
 
   // 4) Update state
   this.selectedCountry = transformedCountry;
-}.bind(state);
+};
 
 /**
  * Filter Countries
@@ -84,7 +84,7 @@ export const filterCountries = async function (
 
   // 2) If there's no country data then fetch
   if (!this.countries.length) {
-    await loadCountries();
+    await loadCountries.call(this);
   }
 
   // 3) Start filtering
@@ -105,4 +105,4 @@ export const filterCountries = async function (
         filterBy !== "All" ? `in the specified region "${filterBy}"` : ""
       }`
     );
-}.bind(state);
+};

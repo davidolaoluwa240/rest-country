@@ -1,22 +1,9 @@
-// Configs
-import { FETCH_TIMEOUT_SECS } from "./config";
+// Modules
+import axios from "axios";
 
 // Interfaces
 import { CountryTransformer, Country } from "./interfaces/country";
 import { Callback, ErrorCallback } from "./interfaces/callback";
-
-/**
- * Custom Timeout Function
- * @param {number} sec Seconds in which the timeout promise should be rejected
- */
-const timeout = function (sec: number): Promise<Error> {
-  return new Promise(function (_, reject) {
-    setTimeout(
-      reject.bind(null, new Error("Request took too long. Please try again")),
-      sec * 1000
-    );
-  });
-};
 
 /**
  * Catch Async Error And Handle Error By Calling the ErrorCallback
@@ -41,16 +28,18 @@ const catchAsync = function (
  * @param {string} url URL to make request to
  */
 const getJSON = async function <T>(url: string): Promise<T> {
-  const res = await Promise.race([fetch(url), timeout(FETCH_TIMEOUT_SECS)]);
-  if (res instanceof Response) {
-    const data = await res.json();
-    if (res.status === 404)
-      throw new Error("Could not find the specified country");
-    if (res.status === 500)
-      throw new Error("Something went wrong. Please try again later");
-    return data;
+  try {
+    const res = await axios.get<T>(url);
+    return res.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      if (err.status === "404")
+        throw new Error("Could not find the specified country");
+      if (err.status === "500")
+        throw new Error("Something went wrong. Please try again later");
+    }
+    throw err;
   }
-  throw null;
 };
 
 /**
@@ -76,7 +65,7 @@ const countryTransformer = function (country: Country): CountryTransformer {
     countryName: country.name.common,
     flag: country.flags.png,
     region: country.region,
-    population: +country.population,
+    population: country.population,
     capital: country.capital,
     borders: country.borders,
     topLevelDomain: country.tld,

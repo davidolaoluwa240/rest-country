@@ -77,4 +77,4 @@ class SelectBoxView extends View<string> {
   }
 }
 
-export default new SelectBoxView();
+export default SelectBoxView;

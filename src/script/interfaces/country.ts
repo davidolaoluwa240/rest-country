@@ -16,7 +16,7 @@ export interface CountryTransformer {
 export interface Country {
   name: CountryName;
   flags: CountryFlag;
-  population: string;
+  population: number;
   capital: string[];
   region: string;
   borders: string[];

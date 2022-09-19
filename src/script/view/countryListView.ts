@@ -79,4 +79,4 @@ class CountryListView extends View<CountryTransformer[]> {
   }
 }
 
-export default new CountryListView();
+export default CountryListView;

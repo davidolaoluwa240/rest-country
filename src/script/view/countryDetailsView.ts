@@ -131,4 +131,4 @@ class CountryDetailsView extends View<CountryTransformer> {
   }
 }
 
-export default new CountryDetailsView();
+export default CountryDetailsView;
