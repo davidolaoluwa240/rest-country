@@ -10,7 +10,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Available Scripts](#built-with)
+  - [Available Scripts](#available-scripts)
 - [Author](#author)
 
 ## Overview
@@ -58,7 +58,6 @@ Runs the app in the development mode.\
 Open [http://localhost:1234](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
-
 
 ### `npm test`
 
