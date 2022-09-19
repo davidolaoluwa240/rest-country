@@ -43,7 +43,9 @@ Users should be able to:
 - Desktop-first workflow
 - MVC Architecture
 - Javascript
+- Typescript
 - Parcel
+- Vitest
 
 ## Author
 
