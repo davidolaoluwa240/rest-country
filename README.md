@@ -10,6 +10,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+  - [Available Scripts](#built-with)
 - [Author](#author)
 
 ## Overview
@@ -46,6 +47,29 @@ Users should be able to:
 - Typescript
 - Parcel
 - Vitest
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:1234](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.
+
+
+### `npm test`
+
+Launches the test runner.\
+Learn more about [testing with vitest]()
+See the section about [running tests](https://vitest.dev/).
+
+### `npm run build`
+
+Builds the app for production to the `dist` folder.\
+It correctly bundles the entire app in production mode and optimizes the build for the best performance.
 
 ## Author
 
