@@ -62,8 +62,7 @@ The page will reload when you make changes.
 ### `npm test`
 
 Launches the test runner.\
-Learn more about [testing with vitest]()
-See the section about [running tests](https://vitest.dev/).
+Learn more about [testing with vitest](https://vitest.dev/)
 
 ### `npm run build`
 
